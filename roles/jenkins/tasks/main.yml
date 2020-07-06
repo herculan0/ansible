@@ -20,6 +20,16 @@
     enablerepo: jenkins
     state: present
 
+- name: Install Java for jenkins
+  yum:
+    name: java-1.8.0-openjdk
+    state: present
+    
+- name: Uninstall Java for jenkins
+  yum:
+    exclude: java-1.7.0
+    state: present
+
 - name: Start Jenkins
   service:
     name: jenkins

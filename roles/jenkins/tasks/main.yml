@@ -1,16 +1,14 @@
 ---
-# tasks file for jenkins
-
 - name: Import Jenkins GPG key
   rpm_key:
     state: present
-    key: https://pkg.jenkins.io/redhat/jenkins.io.key
+    key: https://pkg.jenkins.io/redhat-stable/jenkins.io.key
 
 - name: Add Jenkins repository
   yum_repository:
     name: jenkins
     description: jenkins repository
-    baseurl: https://pkg.jenkins.io/redhat/jenkins.repo
+    baseurl: https://pkg.jenkins.io/redhat-stable/jenkins.repo
     enabled: no
     gpgcheck: yes
 
@@ -18,16 +16,6 @@
   yum:
     name: jenkins
     enablerepo: jenkins
-    state: present
-
-- name: Install Java for jenkins
-  yum:
-    name: java-1.8.0-openjdk
-    state: present
-    
-- name: Uninstall Java for jenkins
-  yum:
-    exclude: java-1.7.0
     state: present
 
 - name: Start Jenkins
